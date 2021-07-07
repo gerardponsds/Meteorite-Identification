@@ -15,6 +15,8 @@ One of the biggest problems we encountered while working on these project was th
 - **Internet**: appropriate images were searched online. We took into account the background as well as the angle, because they should be from a cenital point of view, as if they were taken with a drone.
 - **Image manipulation software**: images from backgraounds and meteorites were croped and added together accurately, taking into account factors such as light direction, exposure or grain, so that an artificial contrasts does not trick the model.
 
+After all this steps, the dataset was not big enough, so we had to perform  differnt types of **Data Augmentation**.
+
 ## MODEL ARCHITECTURE
 
 The model's architecture has been inspired by the **VGG architecture**, created by Oxford researchers:
@@ -23,12 +25,23 @@ The model's architecture has been inspired by the **VGG architecture**, created 
 </p>
 
 
-The architcture creation underwent **various changes** until the final one was decided: 
+The architctecture creation underwent **various changes** until the final one was decided, and the decisions were made taking into account accuracy, loss, f-score among other metrics, and it implied from changing the way the data was augmented or the number of layers to the amount of dropout: 
 
-We first started by using only one model which detected the meteorites, but when exploring the results, concretely the **False Positives/Negatives**, we soon realized that model starts struggling when detecting meteorites so it starts by classifying the vast majority of difficult images as meteorites: 
+<div class="row">
+  <img class="pull-left" src="Images/FPFN.png"  width="350">
+  <img class="pull-left" src="Images/model_3_5.png"  width="530">
+</div>
+
+We first started by using only one model which detected the meteorites, but when exploring the results, concretely the **False Positives/Negatives**, we soon realized that model starts struggling when detecting meteorites so it starts by classifying the vast majority of difficult images as meteorites. 
 
 Hence, it was deciced to work with **two different architectures** in series, one for detecting the candidates and another another one for classifying those into **rocks or meteorites**. These new approach yield much better overall results.
 
 <p align="center">
   <img src="Images/all.jpg"  alt="drawing" width="700"/>
 </p>
+
+## REPOSITORY CONTENTS
+
+This repository contains two main things:
+- **Scripts** for the training process, which include the transformations, dataset creation and all the general steps of the training pipeline, and for the models used in the final architecture.
+- Pickle files of the **best models** obtained.
