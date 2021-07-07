@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 
 # IMPORT HELPERS
 
-from models import model
+from models import model_rocks, model meteorites
 
 
 # CREATE TRANSFORMATIONS
@@ -68,7 +68,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # CREATE MODEL
 
-model = model()
+model = model_rocks()
 model.to(device)
 
 
